@@ -22,11 +22,11 @@ public class StorageServiceImpl implements StorageService {
   }
 
   @Override
-  public boolean saveFile(String fileName, byte[] content) {
+  public boolean saveFile(String filename, byte[] content) {
     try {
       var filePath = Path.of(
         storageConfig.getPath(),
-        fileName
+        filename
       );
       Files.write(filePath, content);
       return true;

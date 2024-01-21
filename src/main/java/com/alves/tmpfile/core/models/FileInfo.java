@@ -16,7 +16,7 @@ public class FileInfo {
 
   @Id @GeneratedValue(strategy = GenerationType.UUID)
   private UUID id;
-  private String originalName;
+  private String originalFilename;
   private Date uploadDate;
   
 }

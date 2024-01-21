@@ -22,9 +22,9 @@ public class FileServiceImpl implements FileService {
   private final FileInfoRepository fileInfoRepository;
 
   @Override @Transactional
-  public UUID saveFile(String originalName, byte[] content) {
+  public UUID saveFile(String originalFilename, byte[] content) {
     var file = new FileInfo();
-    file.setOriginalName(originalName);
+    file.setOriginalFilename(originalFilename);
     file.setUploadDate(new Date());
     file.setId(fileInfoRepository.save(file).getId());
     boolean errorOnSaveFile = !storageService.saveFile(
@@ -32,7 +32,7 @@ public class FileServiceImpl implements FileService {
       content
     );
     if(errorOnSaveFile) {
-      throw new UnableToSaveFileException(originalName);
+      throw new UnableToSaveFileException(originalFilename);
     }
     return file.getId();
   }

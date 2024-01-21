@@ -4,6 +4,6 @@ import java.util.UUID;
 
 public interface FileService {
 
-  public UUID saveFile(String originalName, byte[] content);
+  public UUID saveFile(String originalFilename, byte[] content);
   
 }
