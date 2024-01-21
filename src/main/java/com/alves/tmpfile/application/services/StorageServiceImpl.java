@@ -5,23 +5,26 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import org.springframework.stereotype.Service;
+
 import com.alves.tmpfile.config.StorageConfig;
 import com.alves.tmpfile.core.services.StorageService;
 
+@Service
 public class StorageServiceImpl implements StorageService {
 
   private final StorageConfig storageConfig;
 
   public StorageServiceImpl(StorageConfig storageConfig) {
     this.storageConfig = storageConfig;
-    File storageDir = new File(storageConfig.getPath());
+    var storageDir = new File(storageConfig.getPath());
     storageDir.mkdirs();
   }
 
   @Override
   public boolean saveFile(String fileName, byte[] content) {
     try {
-      Path filePath = Path.of(
+      var filePath = Path.of(
         storageConfig.getPath(),
         fileName
       );
