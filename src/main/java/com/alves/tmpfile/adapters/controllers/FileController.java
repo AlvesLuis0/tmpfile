@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.UUID;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -29,6 +31,12 @@ public class FileController {
     );
     var response = SaveFileResponse.build(id);
     return ResponseEntity.ok(response);
+  }
+
+  @GetMapping("/{id}")
+  public ResponseEntity<byte[]> loadFile(@PathVariable UUID id) {
+    byte[] file = fileService.loadFile(id);
+    return ResponseEntity.ok(file);
   }
   
 }
