@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tmpfile</title>
+</head>
+<body>
+  <h1>Temporarily upload your file</h1>
+  <form enctype="multipart/form-data">
+    <input type="file" name="file" id="file" required>
+    <button type="submit">Upload</button>
+  </form>
+  <div id="output-box" hidden>
+    <h3>Link to download the file:</h3>
+    <a id="output-link"></a>
+    <button id="copy-btn">Copy</button>
+  </div>
+  <script src="/js/form.js"></script>
+</body>
+</html>
