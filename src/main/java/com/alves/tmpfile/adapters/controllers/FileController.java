@@ -1,8 +1,8 @@
 package com.alves.tmpfile.adapters.controllers;
 
 import java.io.IOException;
-import java.util.UUID;
 
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,7 +25,7 @@ public class FileController {
 
   @PostMapping
   public ResponseEntity<SaveFileResponse> saveFile(@RequestPart MultipartFile file) throws IOException {
-    UUID id = fileService.saveFile(
+    String id = fileService.saveFile(
       file.getOriginalFilename(),
       file.getBytes()
     );
@@ -33,8 +33,8 @@ public class FileController {
     return ResponseEntity.ok(response);
   }
 
-  @GetMapping("/{id}")
-  public ResponseEntity<byte[]> loadFile(@PathVariable UUID id) {
+  @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+  public ResponseEntity<byte[]> loadFile(@PathVariable String id) {
     byte[] file = fileService.loadFile(id);
     return ResponseEntity.ok(file);
   }

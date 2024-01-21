@@ -24,11 +24,11 @@ public class FileServiceImpl implements FileService {
   private final FileInfoRepository fileInfoRepository;
 
   @Override @Transactional
-  public UUID saveFile(String originalFilename, byte[] content) {
+  public String saveFile(String originalFilename, byte[] content) {
     var file = new FileInfo();
-    file.setOriginalFilename(originalFilename);
     file.setUploadDate(new Date());
-    file.setId(fileInfoRepository.save(file).getId());
+    file.setId(UUID.randomUUID() + originalFilename);
+    fileInfoRepository.save(file);
     boolean errorOnSaveFile = !storageService.saveFile(
       file.getId().toString(),
       content
@@ -40,13 +40,13 @@ public class FileServiceImpl implements FileService {
   }
 
   @Override
-  public byte[] loadFile(UUID id) {
+  public byte[] loadFile(String id) {
     fileInfoRepository.findById(id)
       .orElseThrow(() -> new FileNotFoundException(id));
-    byte[] file = storageService.loadFile(id.toString());
+    byte[] file = storageService.loadFile(id);
     boolean errorOnLoad = file == null;
     if(errorOnLoad) {
-      throw new UnableToLoadFileException(id.toString());
+      throw new UnableToLoadFileException(id);
     }
     return file;
   }
