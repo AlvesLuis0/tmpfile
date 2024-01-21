@@ -24,16 +24,31 @@ public class StorageServiceImpl implements StorageService {
   @Override
   public boolean saveFile(String filename, byte[] content) {
     try {
-      var filePath = Path.of(
+      var filepath = Path.of(
         storageConfig.getPath(),
         filename
       );
-      Files.write(filePath, content);
+      Files.write(filepath, content);
       return true;
     }
     catch(IOException exception) {
       exception.printStackTrace();
       return false;
+    }
+  }
+
+  @Override
+  public byte[] loadFile(String filename) {
+    var filepath = Path.of(
+      storageConfig.getPath(),
+      filename
+    );
+    try {
+      return Files.readAllBytes(filepath);
+    }
+    catch(IOException exception) {
+      exception.printStackTrace();
+      return null;
     }
   }
 
