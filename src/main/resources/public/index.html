@@ -3,19 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
   <title>Tmpfile</title>
 </head>
 <body>
-  <h1>Temporarily upload your file</h1>
-  <form enctype="multipart/form-data">
-    <input type="file" name="file" id="file" required>
-    <button type="submit">Upload</button>
-  </form>
-  <div id="output-box" hidden>
-    <h3>Link to download the file:</h3>
-    <a id="output-link"></a>
-    <button id="copy-btn">Copy</button>
+
+  <div class="wrapper">
+    <div class="card" style="width: 40rem;">
+      <div class="card-body">
+        <h1 class="card-title">Tmpfile</h1>
+        <h4 class="card-subtitle mb-2 text-body-secondary">Temporarily upload your file</h4>
+        <p class="card-text">
+          Once the file has been uploaded, you will have 7 days to download it again. After that, the file will be
+          deleted from the server and you will no longer have access to it. <b>The maximum file size is 1GB.</b>
+        </p>
+
+        <form enctype="multipart/form-data">
+          <input class="form-control" type="file" required>
+          <button class="btn btn-primary" type="submit">Upload</button>
+        </form>
+      </div>
+    </div>
+    
+    <div id="output-box" class="card" style="width: 40rem;" hidden>
+      <div class="card-body">
+        <h6 class="card-subtitle mb-2 text-body-secondary">Link to download the file:</h6>
+        <a href="#" class="card-link" id="output-link">#</a>
+        <button class="btn btn-success" id="copy-btn">Copy</button>
+      </div>
+    </div>
   </div>
-  <script src="/js/form.js"></script>
+  <script src="js/form.js"></script>
 </body>
 </html>

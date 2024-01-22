@@ -36,7 +36,9 @@ public class FileController {
   @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
   public ResponseEntity<byte[]> loadFile(@PathVariable String id) {
     byte[] file = fileService.loadFile(id);
-    return ResponseEntity.ok(file);
+    return ResponseEntity.ok()
+      .header("Content-Disposition", "attachment; filename=" + id)
+      .body(file);
   }
   
 }

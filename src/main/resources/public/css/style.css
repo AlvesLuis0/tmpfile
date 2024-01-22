@@ -1,0 +1,15 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.form-control {
+  width: 20rem;
+  display: inline;
+}
+
+.form-control, #output-link {
+  margin-right: 20px;
+}

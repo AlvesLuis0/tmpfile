@@ -1,13 +1,8 @@
 (function() {
 
-const form = document.forms[0]
-const input = document.getElementById('file')
-const outputBox = document.getElementById('output-box')
-const outputLink = document.getElementById('output-link')
-const copyBtn = document.getElementById('copy-btn')
-
 function getFile() {
-  return input.files[0]
+  const inputElement = document.querySelector('input[type=file]')
+  return inputElement.files[0]
 }
 
 async function uploadFile(file) {
@@ -23,20 +18,30 @@ async function uploadFile(file) {
 }
 
 function shareLink(link) {
+  const boxElement = document.getElementById('output-box')
+  const linkElement = document.getElementById('output-link')
+  const copyElement = document.getElementById('copy-btn')
   link = link.substring(1)
-  outputLink.href = link
+  linkElement.href = link
   const fullLink = location.href + link
-  outputLink.innerText = fullLink
-  outputBox.hidden = false
-  copyBtn.onclick = () => {
+  linkElement.innerText = fullLink
+  boxElement.hidden = false
+  copyElement.onclick = () => {
     navigator.clipboard.writeText(fullLink)
     alert('Copied!')
   }
 }
 
+const form = document.forms[0]
 form.addEventListener('submit', (event) => {
   event.preventDefault()
   const file = getFile()
+  const maxSize = 1 * 1024 * 1024 * 1024 // 1GB
+  if(file.size > maxSize) {
+    form.reset();
+    alert('File too big')
+    return
+  }
   uploadFile(file)
     .then(json => shareLink(json.url))
   form.reset()
