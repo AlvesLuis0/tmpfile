@@ -1,5 +1,6 @@
 package com.alves.tmpfile.application.services;
 
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.alves.tmpfile.adapters.repositories.FileInfoRepository;
@@ -50,6 +51,17 @@ public class FileServiceImpl implements FileService {
       throw new UnableToLoadFileException(id);
     }
     return file;
+  }
+
+  @Override @Transactional @Scheduled(fixedRate = 24 * 60 * 60 * 1000) // every day
+  public void cleanupExpiredFiles() {
+    fileInfoRepository.findAll()
+      .stream()
+      .filter(FileInfo::isExpired)
+      .forEach(file -> {
+        storageService.deleteFile(file.getId());
+        fileInfoRepository.delete(file);
+      });
   }
   
 }

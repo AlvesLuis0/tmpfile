@@ -52,4 +52,16 @@ public class StorageServiceImpl implements StorageService {
     }
   }
 
+  @Override
+  public boolean deleteFile(String filename) {
+    var filepath = Path.of(storageConfig.getPath(), filename);
+    try {
+      return Files.deleteIfExists(filepath);
+    }
+    catch(IOException exception) {
+      exception.printStackTrace();
+      return false;
+    }
+  }
+
 }

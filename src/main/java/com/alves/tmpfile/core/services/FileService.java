@@ -6,5 +6,6 @@ public interface FileService {
 
   public String saveFile(FileInfo file);
   public FileInfo loadFile(String id);
+  public void cleanupExpiredFiles();
   
 }

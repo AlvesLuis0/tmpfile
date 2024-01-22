@@ -18,5 +18,9 @@ public class FileInfo {
   private Date expirationDate;
   @Transient
   private byte[] content;
+
+  public boolean isExpired() {
+    return new Date().after(expirationDate);
+  }
   
 }
