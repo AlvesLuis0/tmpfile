@@ -43,7 +43,7 @@ form.addEventListener('submit', (event) => {
     return
   }
   uploadFile(file)
-    .then(json => shareLink(json.url))
+    .then(json => shareLink(json.path))
   form.reset()
 })
 
