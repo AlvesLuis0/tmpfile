@@ -13,6 +13,6 @@ public class FileInfo {
 
   @Id
   private String id;
-  private Date uploadDate;
+  private Date expirationDate;
   
 }

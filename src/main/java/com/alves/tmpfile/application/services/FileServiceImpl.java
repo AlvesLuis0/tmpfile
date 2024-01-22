@@ -1,6 +1,7 @@
 package com.alves.tmpfile.application.services;
 
-import java.util.Date;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
@@ -26,7 +27,8 @@ public class FileServiceImpl implements FileService {
   @Override @Transactional
   public String saveFile(String originalFilename, byte[] content) {
     var file = new FileInfo();
-    file.setUploadDate(new Date());
+    var date = LocalDate.now();
+    file.setExpirationDate(Date.valueOf(date.plusDays(7)));
     file.setId(UUID.randomUUID() + originalFilename);
     fileInfoRepository.save(file);
     boolean errorOnSaveFile = !storageService.saveFile(
