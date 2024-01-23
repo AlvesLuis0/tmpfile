@@ -76,3 +76,4 @@ The following tools were used to build the project:
 - Container orchestration with Docker Compose
 - Reading, writing, removing and downloading files
 - Schedule tasks
+- Creating simple pages with Bootstrap
