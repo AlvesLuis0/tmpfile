@@ -53,7 +53,7 @@ Bootstrap, and the back-end was implemented using Spring Boot
 
 * As demonstrated, the user uploads a file through the input, and the _JavaScript_ sends a **POST** request to
 the **/upload route**, submitting the file
-* The back-end receives the file, stores it in the [files](/files) folder, and saves its information in
+* The back-end receives the file, stores it in the _files_ folder, and saves its information in
 _PostgreSQL_
 * Subsequently, a randomly generated string of 6 characters, which serves as the file ID, is returned
 * Accessing the **/upload/{id}** route initiates the download of the file with the specified ID
