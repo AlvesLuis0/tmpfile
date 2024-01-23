@@ -17,7 +17,7 @@ public class Utils {
     int index;
     char character;
     for(int i = 0; i < length; i++) {
-      index = rand.nextInt(0, CHARS.length());
+      index = rand.nextInt(CHARS.length());
       character = CHARS.charAt(index);
       string.append(character);
     }

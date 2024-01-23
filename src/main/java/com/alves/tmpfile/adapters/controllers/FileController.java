@@ -26,9 +26,10 @@ public class FileController {
 
   @PostMapping
   public ResponseEntity<SaveFileResponse> saveFile(@RequestPart MultipartFile file) throws IOException {
-    var fileInfo = new FileInfo();
-    fileInfo.setOriginalFilename(file.getOriginalFilename());
-    fileInfo.setContent(file.getBytes());
+    var fileInfo = FileInfo.builder()
+      .originalFilename(file.getOriginalFilename())
+      .content(file.getBytes())
+      .build();
     String id = fileService.saveFile(fileInfo);
     var response = SaveFileResponse.build(id);
     return ResponseEntity.ok(response);
