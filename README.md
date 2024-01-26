@@ -20,7 +20,7 @@ anyone else who has access to the link
 
 Before starting, you will need to have the following tools installed on your machine:
 [Git](https://git-scm.com), [JDK 17](https://openjdk.org/projects/jdk/17/),
-[Maven](https://maven.apache.org/), [Postgres](https://www.postgresql.org/),
+[Maven](https://maven.apache.org/),
 [Docker and Docker Compose](https://docs.docker.com/). 
 
 ### 🚀 Running
